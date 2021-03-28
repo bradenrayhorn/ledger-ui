@@ -8,14 +8,14 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
- imagePullSecrets:
-   - name: gitlab-creds
+imagePullSecrets:
+- name: gitlab-creds
 
- imageCredentials:
-   - registry: registry.gitlab.com
-     username: ${{ secrets.REGISTRY_USERNAME }}
-     password: ${{ secrets.REGISTRY_PASSWORD }}
-     secretName: gitlab-creds
+imageCredentials:
+- registry: registry.gitlab.com
+  username: ${{ secrets.REGISTRY_USERNAME }}
+  password: ${{ secrets.REGISTRY_PASSWORD }}
+  secretName: gitlab-creds
 
 container:
   ports:
