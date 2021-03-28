@@ -1,7 +1,7 @@
 import React from 'react';
 import { Center, Heading, Box } from '@chakra-ui/react';
 
-const NotFoundPage = () => {
+const NotFoundRoute = () => {
   return (
     <Center h="100%">
       <Box>
@@ -14,4 +14,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFoundRoute;

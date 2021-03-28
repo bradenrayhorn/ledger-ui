@@ -1,20 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import NotFoundPage from 'pages/not-found/not-found-page';
-import LoginPage from 'pages/login/login-page';
-import DashboardPage from 'pages/dashboard/dashboard-page';
-import SettingsPage from 'pages/settings/settings-page';
+import { Box, ChakraProvider, HStack } from '@chakra-ui/react';
+import NotFoundRoute from 'route/not-found/not-found-route';
+import LoginRoute from 'route/login/login-route';
+import DashboardRoute from 'route/dashboard/dashboard-route';
+import SettingsRoute from 'route/settings/settings-route';
 import NavigationMenu from 'components/navigation-menu/navigation-menu';
+import AuthRoute from 'route/auth-route';
+import NoAuthRoute from 'route/no-auth-route';
 
 const appRoutes = [
   {
     path: '/dashboard',
-    component: DashboardPage,
+    component: DashboardRoute,
   },
   {
     path: '/settings',
-    component: SettingsPage,
+    component: SettingsRoute,
   },
 ];
 
@@ -22,27 +24,28 @@ function App() {
   return (
     <ChakraProvider>
       <BrowserRouter>
-        <Route path={appRoutes.map(({ path }) => path)}>
-          <NavigationMenu />
-        </Route>
-
         <Switch>
-          <Route path="/login" exact>
-            <LoginPage />
-          </Route>
+          <NoAuthRoute path="/login" exact>
+            <LoginRoute />
+          </NoAuthRoute>
 
-          {appRoutes.map(({ path, component: Component }) => (
-            <Route path={path}>
-              <Component />
-            </Route>
-          ))}
+          <AuthRoute path={appRoutes.map(({ path }) => path)}>
+            <HStack height="100%" width="100%">
+              <NavigationMenu />
+              {appRoutes.map(({ path, component: Component }) => (
+                <Route path={path}>
+                  <Component />
+                </Route>
+              ))}
+            </HStack>
+          </AuthRoute>
 
           <Route exact path="/">
             <Redirect to="/dashboard" />
           </Route>
 
           <Route>
-            <NotFoundPage />
+            <NotFoundRoute />
           </Route>
         </Switch>
       </BrowserRouter>

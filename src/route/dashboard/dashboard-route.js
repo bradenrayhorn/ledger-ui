@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const DashboardPage = () => {
+const DashboardRoute = () => {
   return <Box>Dashboard</Box>;
 };
 
-export default DashboardPage;
+export default DashboardRoute;

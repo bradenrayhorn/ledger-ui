@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const SettingsPage = () => {
+const SettingsRoute = () => {
   return <Box>Settings</Box>;
 };
 
-export default SettingsPage;
+export default SettingsRoute;
