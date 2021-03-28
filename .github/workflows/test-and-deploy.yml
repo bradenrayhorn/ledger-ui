@@ -16,8 +16,11 @@ jobs:
           node-version: '14'
       - run: yarn install
       - run: yarn test --ci
+
   build:
     name: Build Image
+    needs:
+      - test
     environment: production
     runs-on: ubuntu-latest
     steps:
@@ -39,3 +42,39 @@ jobs:
         with:
           push: true
           tags: registry.gitlab.com/bradenr/ledger-ui:${{ github.sha }}
+
+  deploy:
+    name: Bake and deploy helm chart
+    needs:
+      - test
+      - build
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        uses: deliverybot/helm@v1
+        with:
+          namespace: default
+          repository: https://bradenrayhorn.github.io/helm-charts/
+          chart: webapp
+          chart_version: 0.2.0
+          track: stable
+          helm: helm
+          release: ledger-ui
+          version: ${{ github.sha }}
+          atomic: true
+          secrets: >-
+            {
+              "REGISTRY_USERNAME": "${{ secrets.REGISTRY_USERNAME }}",
+              "REGISTRY_PASSWORD": "${{ secrets.REGISTRY_PASSWORD }}",
+              "SHA": "${{ github.sha }}"
+            }
+          value-files: >-
+            [
+              "values.yaml"
+            ]
+        env:
+          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
