@@ -55,5 +55,8 @@
     "braceStyle": "1tbs",
     "phpVersion": "7.1",
     "trailingCommaPHP": true
+  },
+  "devDependencies": {
+    "jest-junit": "^12.0.0"
   }
 }
