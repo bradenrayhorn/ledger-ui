@@ -25,6 +25,8 @@ const getStoreValue = (storageKey) => getStore().get(storageKey);
 
 const clearStoreValue = (storageKey) => getStore().remove(storageKey);
 
+const clearAllStoreValues = () => getStore().clearAll();
+
 const observeStoreValue = (storageKey, callback) => getStore().observe(storageKey, callback);
 
 const unobserveStoreValue = (observerID) => getStore().unobserve(observerID);
@@ -41,4 +43,5 @@ export {
   clearStoreValue,
   observeStoreValue,
   unobserveStoreValue,
+  clearAllStoreValues,
 };

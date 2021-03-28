@@ -4,7 +4,7 @@ import { Button, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 import { AiFillSetting, AiOutlineDashboard } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import { MdAttachMoney } from 'react-icons/md';
-import { clearStoreValue, storageKeys } from 'utils/store';
+import { clearAllStoreValues, storageKeys } from 'utils/store';
 
 const MenuItems = [
   {
@@ -69,7 +69,7 @@ const NavigationMenu = () => {
           icon={FiLogOut}
           name="Logout"
           action={() => {
-            clearStoreValue(storageKeys.authToken);
+            clearAllStoreValues();
           }}
         />
       </Flex>
