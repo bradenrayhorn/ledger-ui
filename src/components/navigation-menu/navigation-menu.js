@@ -4,7 +4,7 @@ import { Button, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 import { AiFillSetting, AiOutlineDashboard } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import { MdAttachMoney } from 'react-icons/md';
-import { clearAllStoreValues, storageKeys } from 'utils/store';
+import { clearAllStoreValues } from 'utils/store';
 
 const MenuItems = [
   {
@@ -61,7 +61,9 @@ const NavigationMenu = () => {
           >
             <Icon as={MdAttachMoney} w={10} h={10} />
           </Flex>
-          {MenuItems.map(MenuButton)}
+          {MenuItems.map((props, i) => (
+            <MenuButton key={i} {...props} />
+          ))}
         </>
       </Flex>
       <Flex>
