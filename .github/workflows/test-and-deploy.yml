@@ -68,8 +68,8 @@ jobs:
           atomic: true
           secrets: ${{ toJSON(secrets) }}
           timeout: 120
-          values:
-            sha: '${{ github.sha }}'
+          values: |
+            image.tag: "${{ github.sha }}"
           value-files: >-
             [
               "values.yaml"
