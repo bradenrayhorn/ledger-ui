@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: latest
+  repository: registry.gitlab.com
+  tag: registry.gitlab.com/bradenr/ledger-ui:${{ sha }}
   pullPolicy: IfNotPresent
 
 nameOverride: ""

@@ -67,6 +67,8 @@ jobs:
           version: ${{ github.sha }}
           atomic: true
           secrets: ${{ toJSON(secrets) }}
+          values: |
+            sha: ${{ github.sha }}
           value-files: >-
             [
               "values.yaml"
