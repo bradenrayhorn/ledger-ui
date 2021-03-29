@@ -69,7 +69,7 @@ jobs:
           secrets: ${{ toJSON(secrets) }}
           timeout: 120s
           values: |
-            image.tag: "${{ github.sha }}"
+            image.tag: registry.gitlab.com/bradenr/ledger-ui:${{ github.sha }}
           value-files: >-
             [
               "values.yaml"

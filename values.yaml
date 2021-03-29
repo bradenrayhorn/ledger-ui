@@ -2,7 +2,6 @@ replicaCount: 1
 
 image:
   repository: registry.gitlab.com
-  tag: "registry.gitlab.com/bradenr/ledger-ui:"${{ image.tag }}
   pullPolicy: IfNotPresent
 
 nameOverride: ""
