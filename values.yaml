@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: registry.gitlab.com
-  tag: registry.gitlab.com/bradenr/ledger-ui:${{ sha }}
+  tag: 'registry.gitlab.com/bradenr/ledger-ui:${{ sha }}'
   pullPolicy: IfNotPresent
 
 nameOverride: ""
