@@ -48,7 +48,9 @@ ingress:
   enabled: true
   hosts:
   - host: ledger.braden.cc
-    paths: []
+    paths:
+    - path: /
+      port: 80
   tls: []
 
 resources: {}
