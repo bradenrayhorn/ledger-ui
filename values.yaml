@@ -21,13 +21,13 @@ container:
   ports:
   - 80
   livenessProbe:
-  httpGet:
-    path: /
-    port: http
+    httpGet:
+      path: /
+      port: http
   readinessProbe:
     httpGet:
-    path: /
-    port: http
+      path: /
+      port: http
 
 serviceAccount:
   create: true
