@@ -66,12 +66,7 @@ jobs:
           release: ledger-ui
           version: ${{ github.sha }}
           atomic: true
-          secrets: >-
-            {
-              "REGISTRY_USERNAME": "${{ secrets.REGISTRY_USERNAME }}",
-              "REGISTRY_PASSWORD": "${{ secrets.REGISTRY_PASSWORD }}",
-              "SHA": "${{ github.sha }}"
-            }
+          secrets: ${{ toJSON(secrets) }}
           value-files: >-
             [
               "values.yaml"

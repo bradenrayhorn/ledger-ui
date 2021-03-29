@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: nginx
-  tag: ${{ secrets.SHA }}
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: ""
