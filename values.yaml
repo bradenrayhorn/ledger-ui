@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "ledger-ui"
 
 imagePullSecrets:
 - name: gitlab-creds
