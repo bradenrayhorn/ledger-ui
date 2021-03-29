@@ -62,7 +62,7 @@ jobs:
           chart: webapp
           chart_version: 0.2.0
           track: stable
-          helm: helm
+          helm: helm3
           release: ledger-ui
           version: ${{ github.sha }}
           atomic: true
