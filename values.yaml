@@ -47,7 +47,7 @@ service:
 ingress:
   enabled: true
   hosts:
-  - host: ledger.braden.cc
+  - host: ${{ secrets.HOST }}
     paths:
     - path: /
       port: 80
