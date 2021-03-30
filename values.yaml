@@ -46,12 +46,17 @@ service:
 
 ingress:
   enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
   - host: ${{ secrets.HOST }}
     paths:
     - path: /
       port: 80
-  tls: []
+  tls:
+  - hosts:
+    - ${{ secrets.HOST }}
+      secretName: ledger-ui-cert
 
 resources: {}
 
