@@ -56,7 +56,7 @@ ingress:
   tls:
   - hosts:
     - ${{ secrets.HOST }}
-      secretName: ledger-ui-cert
+    secretName: ledger-ui-cert
 
 resources: {}
 
