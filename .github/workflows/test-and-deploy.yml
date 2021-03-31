@@ -60,7 +60,7 @@ jobs:
           namespace: ledger
           repository: https://bradenrayhorn.github.io/helm-charts/
           chart: webapp
-          chart_version: 0.4.0
+          chart_version: 0.5.0
           track: stable
           helm: helm3
           release: ledger-ui
