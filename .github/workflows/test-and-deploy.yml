@@ -58,7 +58,7 @@ jobs:
       - name: Deploy
         uses: bradenrayhorn/helm@master
         with:
-          namespace: ledger
+          namespace: ledger-ui
           repository: https://bradenrayhorn.github.io/helm-charts/
           chart: webapp
           chart_version: 0.5.4
