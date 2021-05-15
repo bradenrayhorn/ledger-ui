@@ -20,7 +20,7 @@ imageCredentials:
 container:
   env:
   - name: REACT_APP_BASE_URL_AUTH
-    value: "${{ secrets.AUTH_BASE_URL }}"
+    value: "${{{ secrets.AUTH_BASE_URL }}}"
   ports:
   - 80
   livenessProbe:
