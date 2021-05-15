@@ -14,7 +14,9 @@ FROM nginx:1.15.2-alpine
 
 COPY --from=build /usr/src/app/build /var/www
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./env.sh /var/env.sh
+RUN chmod +x /var/env.sh
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/sh", "-c", "/var/env.sh", "nginx", "-g", "daemon off;"]

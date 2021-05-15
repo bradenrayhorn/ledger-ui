@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { Box, ChakraProvider, HStack } from '@chakra-ui/react';
+import { ChakraProvider, HStack } from '@chakra-ui/react';
 import NotFoundRoute from 'route/not-found/not-found-route';
 import LoginRoute from 'route/login/login-route';
 import DashboardRoute from 'route/dashboard/dashboard-route';
@@ -33,7 +33,7 @@ function App() {
             <HStack height="100%" width="100%">
               <NavigationMenu />
               {appRoutes.map(({ path, component: Component }) => (
-                <Route path={path}>
+                <Route path={path} key={Component.name}>
                   <Component />
                 </Route>
               ))}

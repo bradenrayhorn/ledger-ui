@@ -14,7 +14,7 @@ test('it navigates and logs out', () => {
   expect(history.location.pathname).toBe('/dashboard');
 
   // test logout
-  setStoreValue(storageKeys.authToken, 'x');
+  setStoreValue(storageKeys.isLoggedIn, 'x');
   fireEvent.click(screen.getByRole('button', { name: /logout/i }));
-  expect(getStoreValue(storageKeys.authToken)).toBeUndefined();
+  expect(getStoreValue(storageKeys.isLoggedIn)).toBeUndefined();
 });

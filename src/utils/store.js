@@ -32,7 +32,7 @@ const observeStoreValue = (storageKey, callback) => getStore().observe(storageKe
 const unobserveStoreValue = (observerID) => getStore().unobserve(observerID);
 
 const storageKeys = {
-  authToken: 'auth_token',
+  isLoggedIn: 'is_logged_in',
 };
 
 export {
