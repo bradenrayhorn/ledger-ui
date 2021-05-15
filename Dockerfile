@@ -16,7 +16,9 @@ COPY --from=build /usr/src/app/build /var/www
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./env.sh /var/env.sh
 RUN chmod +x /var/env.sh
+ADD start.sh /
+RUN chmod +x /start.shgit
 
 EXPOSE 80
 
-CMD ["/bin/sh", "-c", "/var/env.sh", "nginx", "-g", "daemon off;"]
+CMD ["/start.sh"]
