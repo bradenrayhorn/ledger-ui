@@ -22,6 +22,12 @@ container:
     vault.hashicorp.com/agent-inject: "true"
     vault.hashicorp.com/role: "ledger-ui"
     vault.hashicorp.com/agent-inject-secret-env: "kv/ledger/ledger-ui"
+    vault.hashicorp.com/agent-inject-template-env: |
+      {{ with secret "kv/ledger/ledger-ui" -}}
+        {{- range $k, $v := .Data.data }}
+          {{- $k }}='{{ $v }}'{{ "\n" }}
+        {{- end }}
+      {{- end }}
   ports:
   - 80
   livenessProbe:
