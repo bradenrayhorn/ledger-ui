@@ -21,7 +21,8 @@ container:
   annotations:
     vault.hashicorp.com/agent-inject: "true"
     vault.hashicorp.com/role: "ledger-ui"
-    vault.hashicorp.com/agent-inject-.env: "kv/ledger/ledger-ui"
+    vault.hashicorp.com/agent-inject-secret-.env: "kv/ledger/ledger-ui"
+    vault.hashicorp.com/secret-volume-path-.env: "/"
   ports:
   - 80
   livenessProbe:
