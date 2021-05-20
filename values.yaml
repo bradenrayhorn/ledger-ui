@@ -34,7 +34,7 @@ container:
       port: 80
 
 serviceAccount:
-  create: false
+  create: true
   name: "ledger-ui"
 
 podSecurityContext: {}
