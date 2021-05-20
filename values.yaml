@@ -18,9 +18,10 @@ imageCredentials:
   secretName: gitlab-creds
 
 container:
-  env:
-  - name: REACT_APP_BASE_URL_AUTH
-    value: "${{{ secrets.AUTH_BASE_URL }}}"
+  annotations:
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/role: "ledger-ui"
+    vault.hashicorp.com/agent-inject-.env: "kv/ledger/ledger-ui"
   ports:
   - 80
   livenessProbe:
@@ -33,8 +34,8 @@ container:
       port: 80
 
 serviceAccount:
-  create: true
-  name: ""
+  create: false
+  name: "ledger-ui"
 
 podSecurityContext: {}
 
