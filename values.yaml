@@ -21,6 +21,7 @@ container:
   annotations:
     vault.hashicorp.com/agent-inject: "true"
     vault.hashicorp.com/role: "ledger-ui"
+    vault.hashicorp.com/agent-pre-populate-only: "true"
     vault.hashicorp.com/agent-inject-secret-env: "kv/ledger/ledger-ui"
     vault.hashicorp.com/agent-inject-template-env: |
       {{ with secret "kv/ledger/ledger-ui" -}}
