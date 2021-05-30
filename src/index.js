@@ -16,10 +16,9 @@ axios.interceptors.request.use(
     Object.entries(serviceURLMap).forEach(([service, url]) => {
       if (config.url.startsWith(`svc.${service}`)) {
         config.url = config.url.replace(`svc.${service}`, url);
+        config.withCredentials = !!window?._env_?.REACT_APP_SEND_CREDENTIALS;
       }
     });
-
-    config.withCredentials = !!window?._env_?.REACT_APP_SEND_CREDENTIALS;
 
     return config;
   },

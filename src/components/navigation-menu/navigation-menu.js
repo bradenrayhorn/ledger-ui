@@ -5,6 +5,8 @@ import { AiFillSetting, AiOutlineDashboard } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import { MdAttachMoney } from 'react-icons/md';
 import { clearAllStoreValues } from 'utils/store';
+import { useMutation } from 'react-query';
+import queries from 'api/queries';
 
 const MenuItems = [
   {
@@ -19,7 +21,7 @@ const MenuItems = [
   },
 ];
 
-const MenuButton = ({ icon, name, path, action }) => {
+const MenuButton = ({ icon, name, path, action, ...rest }) => {
   const history = useHistory();
   const location = useLocation();
   const isActive = location.pathname === path;
@@ -35,6 +37,7 @@ const MenuButton = ({ icon, name, path, action }) => {
           history.push(path);
         }
       }}
+      {...rest}
     >
       <VStack spacing={0}>
         <Icon as={icon} w={6} h={6} mb={1} color={isActive ? 'green.500' : 'initial'} />
@@ -47,6 +50,12 @@ const MenuButton = ({ icon, name, path, action }) => {
 };
 
 const NavigationMenu = () => {
+  const logoutMutation = useMutation(queries.logout, {
+    onSuccess: () => {
+      clearAllStoreValues();
+    },
+  });
+
   return (
     <VStack width="64px" height="100%" spacing={0} justifyContent="space-between" bg="gray.100">
       <Flex direction="column">
@@ -70,8 +79,9 @@ const NavigationMenu = () => {
         <MenuButton
           icon={FiLogOut}
           name="Logout"
+          isLoading={logoutMutation.isLoading}
           action={() => {
-            clearAllStoreValues();
+            logoutMutation.mutate();
           }}
         />
       </Flex>

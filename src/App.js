@@ -8,6 +8,7 @@ import SettingsRoute from 'route/settings/settings-route';
 import NavigationMenu from 'components/navigation-menu/navigation-menu';
 import AuthRoute from 'route/auth-route';
 import NoAuthRoute from 'route/no-auth-route';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const appRoutes = [
   {
@@ -20,36 +21,40 @@ const appRoutes = [
   },
 ];
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <ChakraProvider>
-      <BrowserRouter>
-        <Switch>
-          <NoAuthRoute path="/login" exact>
-            <LoginRoute />
-          </NoAuthRoute>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <BrowserRouter>
+          <Switch>
+            <NoAuthRoute path="/login" exact>
+              <LoginRoute />
+            </NoAuthRoute>
 
-          <AuthRoute path={appRoutes.map(({ path }) => path)}>
-            <HStack height="100%" width="100%">
-              <NavigationMenu />
-              {appRoutes.map(({ path, component: Component }) => (
-                <Route path={path} key={Component.name}>
-                  <Component />
-                </Route>
-              ))}
-            </HStack>
-          </AuthRoute>
+            <AuthRoute path={appRoutes.map(({ path }) => path)}>
+              <HStack height="100%" width="100%">
+                <NavigationMenu />
+                {appRoutes.map(({ path, component: Component }) => (
+                  <Route path={path} key={Component.name}>
+                    <Component />
+                  </Route>
+                ))}
+              </HStack>
+            </AuthRoute>
 
-          <Route exact path="/">
-            <Redirect to="/dashboard" />
-          </Route>
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>
 
-          <Route>
-            <NotFoundRoute />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </ChakraProvider>
+            <Route>
+              <NotFoundRoute />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 

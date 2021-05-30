@@ -4,5 +4,14 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import { createMockStore } from 'utils/store';
+import nock from 'nock';
+import axios from 'axios';
+
+axios.defaults.adapter = require('axios/lib/adapters/http')
+axios.defaults.baseURL="http://x.x";
 
 createMockStore();
+
+afterEach(() => {
+  nock.restore();
+});

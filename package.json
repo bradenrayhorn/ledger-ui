@@ -15,7 +15,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
-    "react-query": "^3.13.0",
+    "react-query": "^3.16.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "store": "^2.0.12",
@@ -57,5 +57,7 @@
     "phpVersion": "7.1",
     "trailingCommaPHP": true
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nock": "^13.0.11"
+  }
 }
