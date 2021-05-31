@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import nock from 'nock';
 
 const customRender = (ui, options) => {
   const history = createMemoryHistory();
@@ -19,8 +20,10 @@ const customRender = (ui, options) => {
   return { ...render(ui, { wrapper: Wrapper, ...options }), history };
 };
 
+const makeNock = () => nock("http://x.x");
+
 // re-export everything
 export * from '@testing-library/react';
 
 // override render method
-export { customRender as render };
+export { customRender as render, makeNock };

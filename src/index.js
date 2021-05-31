@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'styles/index.css';
 import axios from 'axios';
-import { clearAllStoreValues } from 'utils/store';
+import { clearAllStoreValues, getStoreValue, storageKeys } from 'utils/store';
 
 const serviceURLMap = {
   auth: window?._env_?.REACT_APP_BASE_URL_AUTH ?? '',
@@ -29,7 +29,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (r) => r,
   (error) => {
-    if (error?.response?.status === 401) {
+    if (error?.response?.status === 401 && !!getStoreValue(storageKeys.isLoggedIn)) {
       clearAllStoreValues();
     }
     return Promise.reject(error);

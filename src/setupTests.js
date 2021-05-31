@@ -7,10 +7,16 @@ import { createMockStore } from 'utils/store';
 import nock from 'nock';
 import axios from 'axios';
 
-axios.defaults.adapter = require('axios/lib/adapters/http')
-axios.defaults.baseURL="http://x.x";
+axios.defaults.adapter = require('axios/lib/adapters/http');
+axios.defaults.baseURL = 'http://x.x';
 
 createMockStore();
+
+beforeEach(() => {
+  if (!nock.isActive()) {
+    nock.activate();
+  }
+});
 
 afterEach(() => {
   nock.restore();

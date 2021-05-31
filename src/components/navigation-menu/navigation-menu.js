@@ -50,7 +50,7 @@ const MenuButton = ({ icon, name, path, action, ...rest }) => {
 };
 
 const NavigationMenu = () => {
-  const logoutMutation = useMutation(queries.logout, {
+ const logoutMutation = useMutation(queries.logout, {
     onSuccess: () => {
       clearAllStoreValues();
     },
