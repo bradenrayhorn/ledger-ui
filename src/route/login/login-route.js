@@ -23,7 +23,6 @@ const LoginRoute = () => {
 
   const loginMutation = useMutation(queries.login, {
     onSuccess: () => {
-      console.log('login success');
       setStoreValue(storageKeys.isLoggedIn, true);
     },
   });
