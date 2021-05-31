@@ -58,7 +58,7 @@ const LoginRoute = () => {
         >
           <FormControl>
             <FormLabel>Username</FormLabel>
-            <Input size="md" {...register('username')} />
+            <Input size="md" {...register('username')} autoComplete="off" />
           </FormControl>
           <FormControl>
             <FormLabel>Password</FormLabel>
