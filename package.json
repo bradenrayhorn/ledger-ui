@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^1.4.1",
+    "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@testing-library/jest-dom": "^5.11.10",
@@ -33,7 +33,16 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "plugins": ["unused-imports"],
+    "rules": {
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+			  "warn",
+			  { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		  ]
+    }
   },
   "browserslist": {
     "production": [
@@ -60,6 +69,7 @@
     "trailingCommaPHP": true
   },
   "devDependencies": {
+    "eslint-plugin-unused-imports": "^1.1.1",
     "nock": "^13.0.11"
   }
 }

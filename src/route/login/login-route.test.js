@@ -10,13 +10,13 @@ test('can login successfully', async () => {
   userEvent.type(screen.getByLabelText('Username'), 'testing');
   userEvent.type(screen.getByLabelText('Password'), 'secrets');
 
-  fireEvent.click(screen.getByRole('button', { name: /login/i }));
+  fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
 
   const scope = makeNock()
     .post('/svc.auth/api/v1/auth/login', { username: 'testing', password: 'secrets' })
     .reply(200);
 
-  await waitFor(() => expect(screen.getByRole('button', { name: /login/i })).toBeDisabled());
+  await waitFor(() => expect(screen.getByRole('button', { name: /sign in/i })).toBeDisabled());
   await waitFor(() => expect(getStoreValue(storageKeys.isLoggedIn)).toBeTruthy());
 
   scope.done();
@@ -29,7 +29,7 @@ test('can interact with alert', async () => {
   userEvent.type(screen.getByLabelText('Username'), 'testing');
   userEvent.type(screen.getByLabelText('Password'), 'secrets');
 
-  fireEvent.click(screen.getByRole('button', { name: /login/i }));
+  fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
 
   const scope = makeNock()
     .post('/svc.auth/api/v1/auth/login', { username: 'testing', password: 'secrets' })

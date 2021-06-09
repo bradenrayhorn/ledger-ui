@@ -39,7 +39,7 @@ const LoginRoute = () => {
   return (
     <Center height="100%" bg="gray.50">
       <VStack>
-        <Heading size="md">Login to Ledger</Heading>
+        <Heading size="md">Sign in to Ledger</Heading>
         {showError && (
           <Alert status="error">
             <AlertIcon />
@@ -77,7 +77,7 @@ const LoginRoute = () => {
             width="100%"
             mt="4"
           >
-            Login
+            Sign in
           </Button>
         </VStack>
       </VStack>
