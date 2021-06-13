@@ -66,6 +66,7 @@ const SettingsRoute = () => {
               colorScheme="red"
               isLoading={revokeMutation.isLoading}
               onClick={() => revokeMutation.mutate()}
+              size="sm"
             >
               Revoke All
             </Button>
