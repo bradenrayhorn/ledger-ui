@@ -6,6 +6,7 @@ import {
   Button,
   Center,
   CloseButton,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
@@ -47,7 +48,8 @@ const LoginRoute = () => {
             <CloseButton ml="1rem" onClick={() => loginMutation.reset()} />
           </Alert>
         )}
-        <VStack
+        <Flex
+          flexDir="column"
           align="flex-start"
           bg="white"
           p="3"
@@ -75,11 +77,11 @@ const LoginRoute = () => {
             isLoading={loginMutation.isLoading}
             colorScheme="green"
             width="100%"
-            mt="4"
+            mt="6"
           >
             Sign in
           </Button>
-        </VStack>
+        </Flex>
       </VStack>
     </Center>
   );

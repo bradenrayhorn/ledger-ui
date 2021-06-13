@@ -1,25 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import {
   Box,
+  Button,
   Container,
   Divider,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import ActiveSessions from './active-sessions';
+import { useMutation } from 'react-query';
+import queries from 'api/queries';
+import { clearAllStoreValues } from 'utils/store';
+import UserEmail from './user-email';
 
 const SettingsRoute = () => {
-  const [userID, setUserID] = useState('');
+  const [user, setUser] = useState({});
+
+  const toast = useToast();
+
+  const revokeMutation = useMutation(queries.revoke, {
+    onSuccess: () => {
+      clearAllStoreValues();
+    },
+    onError: () => {
+      toast({ status: 'error', title: 'Failed to revoke sessions.' });
+    },
+  });
 
   useEffect(() => {
     axios
       .get('svc.auth/api/v1/me')
       .then((response) => {
-        setUserID(response.data.id);
+        setUser(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -29,21 +47,32 @@ const SettingsRoute = () => {
   return (
     <Box h="100%" w="100%" pt="16">
       <Container>
-        <VStack alignItems="flex-start">
+        <Flex alignItems="flex-start" flexDir="column">
           <Heading>Settings</Heading>
-          <VStack width="100%">
+          <VStack width="100%" mt="4">
             <FormControl>
               <FormLabel>User ID</FormLabel>
-              <Input size="md" isReadOnly value={userID} />
+              <Input size="md" isReadOnly value={user.id ?? ''} />
             </FormControl>
           </VStack>
 
-          <Heading size="md" pt="12">
-            Sessions
-          </Heading>
-          <Divider />
+          <Flex width="100%" mt="6">
+            <UserEmail userEmail={user.email} />
+          </Flex>
+
+          <Flex align="center" justifyContent="space-between" mt="12" width="100%">
+            <Heading size="md">Sessions</Heading>
+            <Button
+              colorScheme="red"
+              isLoading={revokeMutation.isLoading}
+              onClick={() => revokeMutation.mutate()}
+            >
+              Revoke All
+            </Button>
+          </Flex>
+          <Divider mt="2" />
           <ActiveSessions />
-        </VStack>
+        </Flex>
       </Container>
     </Box>
   );
